@@ -6,7 +6,7 @@
   "initial_integration": "597abcfc140528fd6b17612d1613f2e457d0bbe4",
   "upstream_repository": "https://gitlab.com/simonpunk/susfs4ksu.git",
   "upstream_branch": "gki-android12-5.10",
-  "upstream_pin": "82f08351fadb8b19dd6591bd14634d02ad832145",
+  "upstream_pin": "ca7093a1a26f7911987110c34a1352d74cfb1d09",
   "bakasu_pin": "08966cd0574d898a678a9bbe9a3ea0270e71ea6e",
   "baseline_definition": "For every listed path, use its exact blob/mode at kernel_pre_susfs_baseline, or absence if null. All unlisted paths remain at kernel_release, including BakaSU integration and SELinux host files.",
   "files": [
@@ -413,5 +413,20 @@
     "drivers/kernelsu": "BakaSU submodule symlink; retained in kernel repository.",
     "security/selinux/hooks.c": "Old SUSFS wrappers were removed by 81c2c29e2; current BakaSU owns SELinux hiding. Retain release whitespace and file mode.",
     "security/selinux/selinuxfs.c": "Old SUSFS wrappers were removed by 81c2c29e2; current BakaSU owns SELinux hiding. Retain release whitespace and file mode."
-  }
+  },
+  "source_upstream_pin": "82f08351fadb8b19dd6591bd14634d02ad832145",
+  "upstream_changes": [
+    {
+      "commit": "6c931c0d922637c27a7f35e3d1cf55fb1c7305c4",
+      "change": "Select existing fake status before original open; initialize a missing fake status only after successful original open.",
+      "mapping": "Already implemented by BakaSU/kernel/feature/selinux_hide.c:552-575 my_sel_open_handle_status(); security/selinux/selinuxfs.c:221-231 retains the original host open.",
+      "port_patch_changed": false
+    },
+    {
+      "commit": "ca7093a1a26f7911987110c34a1352d74cfb1d09",
+      "change": "Remove unused manual-GKI SELinux policy functions from the upstream KernelSU patch.",
+      "mapping": "The 5.4 series does not import kernel_patches/KernelSU/10_enable_susfs_for_ksu.patch or the manual host entry points. Native BakaSU/kernel/feature/selinux_hide.c uses its own ksu_security_* helpers; its alternate SUSFS helper branch at lines 1843-2165 requires Linux >= 6.6.",
+      "port_patch_changed": false
+    }
+  ]
 }

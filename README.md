@@ -1,6 +1,8 @@
 # MIX4 Linux 5.4 port
 
-The `mix4-5.4` branch preserves upstream SUSFS history at `82f08351` and adds the published MIX4 2.3.0 backport. Use [patches/5.4/2.3.0/README.md](patches/5.4/2.3.0/README.md) for pins, the exact file list, application instructions and byte-level verification.
+The `mix4-5.4` branch merges upstream SUSFS through `ca7093a1a26f7911987110c34a1352d74cfb1d09` and carries the published MIX4 2.3.0 backport, originally extracted at `82f08351`.
+
+Each upstream update is merged and mapped to Linux 5.4; compatibility changes belong in this port, and equivalent BakaSU host implementations are documented. Use [patches/5.4/2.3.0/README.md](patches/5.4/2.3.0/README.md) for pins, the exact file list, application instructions and byte-level verification.
 
 This repository mirrors GitLab upstream history on GitHub; it is not a GitHub-native fork.
 
