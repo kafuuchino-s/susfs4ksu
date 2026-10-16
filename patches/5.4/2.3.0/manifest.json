@@ -1,0 +1,417 @@
+{
+  "format": 1,
+  "kernel_repository": "https://github.com/kafuuchino-s/kernel_xiaomi_odin.git",
+  "kernel_release": "df2522bc7b7458012e53a108f1c8238581cdeeb0",
+  "kernel_pre_susfs_baseline": "f24f331d4b8de9903fd019a4bea9e425f4de4477",
+  "initial_integration": "597abcfc140528fd6b17612d1613f2e457d0bbe4",
+  "upstream_repository": "https://gitlab.com/simonpunk/susfs4ksu.git",
+  "upstream_branch": "gki-android12-5.10",
+  "upstream_pin": "82f08351fadb8b19dd6591bd14634d02ad832145",
+  "bakasu_pin": "08966cd0574d898a678a9bbe9a3ea0270e71ea6e",
+  "baseline_definition": "For every listed path, use its exact blob/mode at kernel_pre_susfs_baseline, or absence if null. All unlisted paths remain at kernel_release, including BakaSU integration and SELinux host files.",
+  "files": [
+    {
+      "path": "drivers/input/input.c",
+      "baseline": {
+        "git_blob": "0e16a9980c6a196ad308088f6cf6ae3902f93fb5",
+        "mode": "100644",
+        "bytes": 64626,
+        "sha256": "12ae6f1baf1bd59a44228f303f5ad195f907ac8556de4aa0b8b7aa10f796bb73"
+      },
+      "applied": {
+        "git_blob": "c5b40738a459c22a374c0fa20fb41d1c40ab3406",
+        "mode": "100644",
+        "bytes": 64893,
+        "sha256": "bbe2fd6410531f588a82dab036b9fa98b2c2b55008ceb14b18ab235e869d0581"
+      }
+    },
+    {
+      "path": "fs/Kconfig",
+      "baseline": {
+        "git_blob": "f9b97a8b4e807f5c38e72e80ad7e54f0bb48fe6e",
+        "mode": "100644",
+        "bytes": 7845,
+        "sha256": "e6322512d2cd56cf0fb286a4faa7fd4e25564aaef21f42fa1942ac6c84165a19"
+      },
+      "applied": {
+        "git_blob": "33aaf44f6f525985e7bbe9275e9dc9b9e5868d39",
+        "mode": "100644",
+        "bytes": 7872,
+        "sha256": "812f50ceb9245d0d009e7c507b340d73c7b6007215d1a499bec2b0d9fadce5c1"
+      }
+    },
+    {
+      "path": "fs/Makefile",
+      "baseline": {
+        "git_blob": "1c949ac25dbb6c92b271bbb5b3b683f9a73b8f58",
+        "mode": "100644",
+        "bytes": 4634,
+        "sha256": "71e93016c2d70b2f9cb8b6c0b4c6de8482d88626327b1729fbd548fc25298001"
+      },
+      "applied": {
+        "git_blob": "b3282ad992823f9ee0fd30e43042a5b40b8c6c77",
+        "mode": "100644",
+        "bytes": 4670,
+        "sha256": "af5dc137cb13f822364ed0e5eda160a1471248eabd4b4bfae50e0a20bf8c1600"
+      }
+    },
+    {
+      "path": "fs/exec.c",
+      "baseline": {
+        "git_blob": "182ba7e6dceb8375b1411f16fd9aaffb3f70aade",
+        "mode": "100644",
+        "bytes": 50074,
+        "sha256": "c1e68331db5eec5b9ff035fc4bd60fdd98b7f8f045c331658d042aefdf2f258b"
+      },
+      "applied": {
+        "git_blob": "30e49044d470cdea41b3bd71c6850b5883a7f7ae",
+        "mode": "100644",
+        "bytes": 50891,
+        "sha256": "ff024a4a1b23d7ac9bb62ce0d97103bbd8e4cc3e4d940bfccb7051775b380651"
+      }
+    },
+    {
+      "path": "fs/namei.c",
+      "baseline": {
+        "git_blob": "7c74159e29355e209b1cf4749aae23110f21a098",
+        "mode": "100644",
+        "bytes": 128819,
+        "sha256": "c0355c08366cc16bad24a97349d89adbb0a37599d0c1e2230eb05612a70f4aab"
+      },
+      "applied": {
+        "git_blob": "0246121d2301f63def2d618a8fa91e730b9205b2",
+        "mode": "100644",
+        "bytes": 136103,
+        "sha256": "b340178fbb853f91eeb2eed1828429ce7a2777b5ba62ce9aecc32a5aa67714ae"
+      }
+    },
+    {
+      "path": "fs/namespace.c",
+      "baseline": {
+        "git_blob": "d8a5b4411d2396cab907609f59784e2ec5e96b11",
+        "mode": "100644",
+        "bytes": 100806,
+        "sha256": "44ff3de9fb162f958bb3730d4e601f4d8d905aeafb3c65c70210e279cd1386a9"
+      },
+      "applied": {
+        "git_blob": "301420f92a7342f00023a83e84e599d32640c46a",
+        "mode": "100644",
+        "bytes": 109084,
+        "sha256": "019120556314cd85bb75636414de3de38e2bece5adda400231be7d74df4a01b6"
+      }
+    },
+    {
+      "path": "fs/notify/fdinfo.c",
+      "baseline": {
+        "git_blob": "7df9ad4d84338d54ffb4093e638eb91b808016b5",
+        "mode": "100644",
+        "bytes": 4101,
+        "sha256": "645f695795c6ff15d326603b57c6b9cb49f41e71cbb92b2f3fe89e700466ca93"
+      },
+      "applied": {
+        "git_blob": "f4f2572377b16487065e8c36212939f5a866b24e",
+        "mode": "100644",
+        "bytes": 6855,
+        "sha256": "98e84804e06c0555aaa69527a8b47fa46be2773a353149ba9239931357f299d0"
+      }
+    },
+    {
+      "path": "fs/open.c",
+      "baseline": {
+        "git_blob": "88e42c2e8742ff0428e867be9a73912cabef824b",
+        "mode": "100644",
+        "bytes": 30801,
+        "sha256": "bb6d2bc413b20ddf2c11fef0a76a53220c07ddc17659ef401b66760ef8d40fb2"
+      },
+      "applied": {
+        "git_blob": "7cbd188cc1744372300e13ad557e831d82f14d58",
+        "mode": "100644",
+        "bytes": 31571,
+        "sha256": "56f38f8ce1d7e0baab88a81fbf64537d4bf2f39456ee016ac53f635866ead7b8"
+      }
+    },
+    {
+      "path": "fs/proc/base.c",
+      "baseline": {
+        "git_blob": "008a3842333bff0d6e4088b58dd2b0851fee4028",
+        "mode": "100644",
+        "bytes": 104820,
+        "sha256": "f50e4fcd5d136309090f5b8f93e81b8e1e89139a20444de1dc90e7607e7b9eb5"
+      },
+      "applied": {
+        "git_blob": "630dde206e87c46527cf52e21c938588af653f82",
+        "mode": "100644",
+        "bytes": 105609,
+        "sha256": "d70c0b441a0afbc418b629a190b23229f7319b8e25305d48542135f0d07aac0f"
+      }
+    },
+    {
+      "path": "fs/proc/cmdline.c",
+      "baseline": {
+        "git_blob": "fa762c5fbcb28760dcea21953dc7a42938e2443a",
+        "mode": "100644",
+        "bytes": 415,
+        "sha256": "f72e7aa795a63e8ef2ea957b2d4d82917df2dae86b05b249e09d01ca951de8f4"
+      },
+      "applied": {
+        "git_blob": "2c9474a85c849e3badc9bb441768da54a8d096e4",
+        "mode": "100644",
+        "bytes": 851,
+        "sha256": "f777cc723f86ed52a25103cf6993b8a49b147f6ab541d02f97ba9672dc11a8ef"
+      }
+    },
+    {
+      "path": "fs/proc/fd.c",
+      "baseline": {
+        "git_blob": "81882a13212d3dd7d9c5cffb8e12340f7e8362c6",
+        "mode": "100644",
+        "bytes": 7925,
+        "sha256": "19c141cba6274254b205cee8d7bbcaacdcf7f56534804c21e82d3d4d827402b3"
+      },
+      "applied": {
+        "git_blob": "df95e5aeb9de7141af26f9f998098b8d1ea52810",
+        "mode": "100644",
+        "bytes": 8970,
+        "sha256": "e050102a3f7cbed325a0430d7c4bab2cb3a14e529dc8306727e83843d069f803"
+      }
+    },
+    {
+      "path": "fs/proc/task_mmu.c",
+      "baseline": {
+        "git_blob": "0b3fb93f6e2437fa453b925925253bad442f0611",
+        "mode": "100644",
+        "bytes": 52571,
+        "sha256": "a88500211909e4fc64b1568dd20f525abb0a0810799f36ec5b472d05f848b6bb"
+      },
+      "applied": {
+        "git_blob": "7d55e019dac3e88c7f7f9f994e22ea1dd5317b46",
+        "mode": "100644",
+        "bytes": 55017,
+        "sha256": "9810c08fd9f708f9f0d41b48eec060ee715ebda2b12ad9c8c8eb7a989149214b"
+      }
+    },
+    {
+      "path": "fs/proc_namespace.c",
+      "baseline": {
+        "git_blob": "5b8d065fa83ccb4ccb9d1102a5233eeb1d151c33",
+        "mode": "100644",
+        "bytes": 8177,
+        "sha256": "3cdb082510b0a99084d065447de01781bb757bce72812bf8f9185e2b8118880b"
+      },
+      "applied": {
+        "git_blob": "bc0637522d2b4e18045cbd35f7fbfb579cb9f27e",
+        "mode": "100644",
+        "bytes": 13104,
+        "sha256": "f302d1f8364e7204fa95dab6984813c1942537dd65b39e4bc3ab466cf57f1f27"
+      }
+    },
+    {
+      "path": "fs/read_write.c",
+      "baseline": {
+        "git_blob": "93d06b4c5f78c7430e5c3314072bc2a6817d8f96",
+        "mode": "100644",
+        "bytes": 52878,
+        "sha256": "e23099d5587f80e4cbc518585395e78a1b9a61ac918450bf57c43bfa34e864e6"
+      },
+      "applied": {
+        "git_blob": "fc3f17e3f9b456b1c147cb1ff40a1c089ea2bd41",
+        "mode": "100644",
+        "bytes": 52970,
+        "sha256": "7654bbee3f1ef329cbe365ec6843b1d007300e81bf6d4adeaf33b1d1e28186ef"
+      }
+    },
+    {
+      "path": "fs/readdir.c",
+      "baseline": {
+        "git_blob": "07a3b5baa40472251abbe15ac209137832f0ebe1",
+        "mode": "100644",
+        "bytes": 14096,
+        "sha256": "8f279c3625f668eb797226b9cec620a221ec2f9abfcaa7f1fdf6d7bfa919ebc5"
+      },
+      "applied": {
+        "git_blob": "beded5416a9d0f574cb0762269ace3b2eb368104",
+        "mode": "100644",
+        "bytes": 17870,
+        "sha256": "72ca7fa04555c30f1ff5a038b96b307ec50ae1f6655c9b4de08fea49524cc94b"
+      }
+    },
+    {
+      "path": "fs/stat.c",
+      "baseline": {
+        "git_blob": "298eb77668a766cf9feafa586bba613a6fe19eeb",
+        "mode": "100644",
+        "bytes": 19956,
+        "sha256": "745c655b58f099d6c3e7cdbe72520d167577a55336f80d654efa99b3f417fcff"
+      },
+      "applied": {
+        "git_blob": "2f9eb183b15ec6d4972b914cc334dbc227c06540",
+        "mode": "100644",
+        "bytes": 21361,
+        "sha256": "6612df982d40975911dd7cec99e5d1539c2e6e6d2162a34bd7ba57be8c5c0ab7"
+      }
+    },
+    {
+      "path": "fs/statfs.c",
+      "baseline": {
+        "git_blob": "4960c69cc47cf9baf4f5c8a998fe6fcb80d94d90",
+        "mode": "100644",
+        "bytes": 9753,
+        "sha256": "eefcdeb582872990b18e56877e2e7b2b68d6db5e9c10041971c512af458e9d18"
+      },
+      "applied": {
+        "git_blob": "c07dc7b0d4f6928a50be547f706f9f5bd1aff57c",
+        "mode": "100644",
+        "bytes": 12318,
+        "sha256": "fd31a1c92f13ca413b608dc712c2e6112c2282a9ebb464c2dddbd3080c41d915"
+      }
+    },
+    {
+      "path": "fs/super.c",
+      "baseline": {
+        "git_blob": "47ca7dc0e6c3d37a3026bec2ea90b2a0d6d14add",
+        "mode": "100644",
+        "bytes": 48850,
+        "sha256": "84edbee5f04949377548472961703f90b6bad998cb700abe02695dc976a82e13"
+      },
+      "applied": {
+        "git_blob": "9d00b601fe237d3184eedfffbb428d71fa612e61",
+        "mode": "100644",
+        "bytes": 49558,
+        "sha256": "d5a8fa7cf3ef4ab358529f81fcecbd7e5a7a09ae7bf05d10ece18086bb7865db"
+      }
+    },
+    {
+      "path": "fs/susfs.Kconfig",
+      "baseline": null,
+      "applied": {
+        "git_blob": "88b114f4b6f30559a623d0699682d0d8ea667d37",
+        "mode": "100644",
+        "bytes": 3616,
+        "sha256": "7e6f5e8582034abcccd66f897ec8a2c4b072eedc634957fb9cf7b41b5cc74db3"
+      }
+    },
+    {
+      "path": "fs/susfs.c",
+      "baseline": null,
+      "applied": {
+        "git_blob": "88d1ced0bd0405e5fd975d6fdb8a13f878f80e53",
+        "mode": "100644",
+        "bytes": 60798,
+        "sha256": "2713b2aae5847bc4ddc576d579f76e0926661dd761e1278d3f611283941f32b7"
+      }
+    },
+    {
+      "path": "include/linux/odin_ksu_hooks.h",
+      "baseline": null,
+      "applied": {
+        "git_blob": "d1f62a99008fda7bb426702f788d414fea29c5a7",
+        "mode": "100644",
+        "bytes": 1319,
+        "sha256": "0fec091d6343bb02c9a01ecfe7ae05586f33ca45f2887a0c5437eaf79f3ae43b"
+      }
+    },
+    {
+      "path": "include/linux/susfs.h",
+      "baseline": null,
+      "applied": {
+        "git_blob": "83d8821e0ec775c106fb8e8fb03ec9f9fe4f23f9",
+        "mode": "100644",
+        "bytes": 7519,
+        "sha256": "173654523d937b69e02c0c00f635d6457ee70a4502fdb23046053759a9e0475b"
+      }
+    },
+    {
+      "path": "include/linux/susfs_def.h",
+      "baseline": null,
+      "applied": {
+        "git_blob": "e01774051ec6d869316f17b5f0ce55ab029e2250",
+        "mode": "100644",
+        "bytes": 5638,
+        "sha256": "639104225a0dde2b522c556c5ab3f548c1b8939a0502465c352e076dcbf50ae3"
+      }
+    },
+    {
+      "path": "kernel/kallsyms.c",
+      "baseline": {
+        "git_blob": "14de0c7bf756f993904c993825d29f8638ffde9a",
+        "mode": "100644",
+        "bytes": 18985,
+        "sha256": "39d7be3ae9047b80e0a544b74cd00b636ed307cc77c24c0462c38b01ab8c2d58"
+      },
+      "applied": {
+        "git_blob": "77cb9e4ee17a0dc500b32160256707a07408f0ca",
+        "mode": "100644",
+        "bytes": 20288,
+        "sha256": "d909366e494772ca68d74cfa3cdc0337702cc816ead94c014bd2ca690d8861d5"
+      }
+    },
+    {
+      "path": "kernel/reboot.c",
+      "baseline": {
+        "git_blob": "963458830b2e0fa75ddcbf833363cf7add0dae85",
+        "mode": "100644",
+        "bytes": 14690,
+        "sha256": "88de7ae2835199900573ad204932906b810c387e429089ba24884522d325f777"
+      },
+      "applied": {
+        "git_blob": "11ad1f028423970f1cc86025c4721fb300e6f5d5",
+        "mode": "100644",
+        "bytes": 14887,
+        "sha256": "bbd7471a24d2de5e4a537eef9ce97175c00e7c03eaaf7aedb505e10b45f2a8ff"
+      }
+    },
+    {
+      "path": "kernel/sys.c",
+      "baseline": {
+        "git_blob": "125edee69eed8720776db28fa84a818bf546640f",
+        "mode": "100644",
+        "bytes": 66644,
+        "sha256": "2ed1a4d454abd32380e29f9c5281d7a0006001edab0c5fdfe83df2572d0528c4"
+      },
+      "applied": {
+        "git_blob": "8b01007d70e5b9f2d49116bd3090764feafa8f4f",
+        "mode": "100644",
+        "bytes": 67172,
+        "sha256": "7fe0bd6281eab7c467970652020fb82e6c1ce2a4f50dbf7a656fbc9509fdcb3d"
+      }
+    },
+    {
+      "path": "mm/memory.c",
+      "baseline": {
+        "git_blob": "1594183931874c0d4942d5875de29b525cc029f3",
+        "mode": "100644",
+        "bytes": 146816,
+        "sha256": "74f53bd15cbc19b8defbbe98827cfac2442fb02df6f1abfe21b1ce97993230d4"
+      },
+      "applied": {
+        "git_blob": "86e3863538e50e6c4fb3aa46cfd0785d5b03f50d",
+        "mode": "100644",
+        "bytes": 147057,
+        "sha256": "7487676c9eefa7a74373837b0985f188dc6a5549acf8e9831cea1ae527b84d0d"
+      }
+    },
+    {
+      "path": "security/selinux/avc.c",
+      "baseline": {
+        "git_blob": "f770ade87d83134e7174998dbdc36887127543eb",
+        "mode": "100644",
+        "bytes": 33153,
+        "sha256": "56f329fad5760dbc9740a360fd756b8344185c7a7f0a28ca0fcb632991f15201"
+      },
+      "applied": {
+        "git_blob": "e5a576d984a4a0709d7ce86beb8f124ad0f97836",
+        "mode": "100644",
+        "bytes": 33720,
+        "sha256": "23ff74aed85cbf4fcb07e0afcadd7208d91aab9dfabe41ea4f0b47d41907ea9b"
+      }
+    }
+  ],
+  "excluded_initial_paths": {
+    ".scmversion": "Frozen ROM banner; belongs to kernel configuration.",
+    "drivers/Kconfig": "BakaSU host registration; retained in kernel repository.",
+    "drivers/Makefile": "BakaSU host registration; retained in kernel repository.",
+    "drivers/kernelsu": "BakaSU submodule symlink; retained in kernel repository.",
+    "security/selinux/hooks.c": "Old SUSFS wrappers were removed by 81c2c29e2; current BakaSU owns SELinux hiding. Retain release whitespace and file mode.",
+    "security/selinux/selinuxfs.c": "Old SUSFS wrappers were removed by 81c2c29e2; current BakaSU owns SELinux hiding. Retain release whitespace and file mode."
+  }
+}
