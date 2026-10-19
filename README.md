@@ -1,8 +1,10 @@
 # MIX4 Linux 5.4 port
 
-The `mix4-5.4` branch merges upstream SUSFS through `ca7093a1a26f7911987110c34a1352d74cfb1d09` and carries the published MIX4 2.3.0 backport, originally extracted at `82f08351`.
+The candidate branch `mix4-5.4-upstream-24.0` merges SUSFS through `f43926dc94b8ffbf9b74321313536600f69367b1`. Use [the lineage-24.0 profile](patches/5.4/2.3.0/lineage-24.0/README.md) for Linux 5.4.302 with the Dream OEM adaptation, the build recipe contract and the upstream-to-BakaSU interface review.
 
-Each upstream update is merged and mapped to Linux 5.4; compatibility changes belong in this port, and equivalent BakaSU host implementations are documented. Use [patches/5.4/2.3.0/README.md](patches/5.4/2.3.0/README.md) for pins, the exact file list, application instructions and byte-level verification.
+The formal `mix4-5.4` branch and [published Linux 5.4.259 profile](patches/5.4/2.3.0/README.md) retain their existing pins and patch bytes. Both profiles carry the MIX4 SUSFS 2.3.0 core, originally extracted at `82f08351`.
+
+Each upstream update is merged and reviewed for Linux 5.4; compatibility work belongs in this port, and native BakaSU implementations and architecture differences are documented in the selected profile. Each profile provides its own baseline, exact file list, application instructions and roundtrip verifier.
 
 This repository mirrors GitLab upstream history on GitHub; it is not a GitHub-native fork.
 

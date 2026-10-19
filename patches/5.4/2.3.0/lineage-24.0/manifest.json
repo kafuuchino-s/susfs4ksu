@@ -9,10 +9,10 @@
   "susfs_upstream": {
     "url": "https://gitlab.com/simonpunk/susfs4ksu.git",
     "branch": "gki-android12-5.10",
-    "commit": "ca7093a1a26f7911987110c34a1352d74cfb1d09"
+    "commit": "f43926dc94b8ffbf9b74321313536600f69367b1"
   },
   "historical_5_4_patch_source": "82f08351fadb8b19dd6591bd14634d02ad832145",
-  "paired_bakasu_candidate": "1744c140a08b233daf3b71801994b9b197318ef0",
+  "paired_bakasu_candidate": "997d1ac40e65497637741f97c531b1a3fc211e15",
   "files": [
     {
       "path": "drivers/input/input.c",
@@ -307,5 +307,10 @@
         "blob": "0766eebc7d06d07d8f8db1f2e00bff9454eab6bc"
       }
     }
-  ]
+  ],
+  "checkpoint_one": {
+    "susfs_commit": "b9131f1a1537f562b00fdcd7b98a3fc5f2c52d7c",
+    "susfs_upstream": "ca7093a1a26f7911987110c34a1352d74cfb1d09",
+    "bakasu": "1744c140a08b233daf3b71801994b9b197318ef0"
+  }
 }

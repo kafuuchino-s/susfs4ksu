@@ -6,7 +6,9 @@ Use `series` for the candidate kernel with the Dream OEM adaptation. This profil
 
 - Kernel upstream: Inkypen79/kernel_xiaomi_odin `lineage-24.0`, `550c3503d7402b5f689f7956f083c2192282c071`.
 - Exact pre-SUSFS OEM host: `43fe4bf80b65cbbe92cdacb12705505a23d62e35`, in kafuuchino-s/kernel_xiaomi_odin. Its `fs/proc/base.c` OEM task controls remain present.
-- Checkpoint-one dependencies: SUSFS upstream `ca7093a1a26f7911987110c34a1352d74cfb1d09`, BakaSU `1744c140a08b233daf3b71801994b9b197318ef0`.
+- Current merged SUSFS upstream: `f43926dc94b8ffbf9b74321313536600f69367b1`, `gki-android12-5.10`.
+- Paired BakaSU candidate: `997d1ac40e65497637741f97c531b1a3fc211e15`.
+- Checkpoint-one dependencies: SUSFS upstream `ca7093a1a26f7911987110c34a1352d74cfb1d09`, BakaSU `1744c140a08b233daf3b71801994b9b197318ef0`. The corresponding profile is recorded by SUSFS commit `b9131f1a1537f562b00fdcd7b98a3fc5f2c52d7c`; the final profile has identical patch bytes.
 - Historical 5.4 patch extraction: SUSFS `82f08351fadb8b19dd6591bd14634d02ad832145`. See the sibling README for the existing SELinux mappings.
 
 Set the kernel recipe's `susfs_series` to `patches/5.4/2.3.0/lineage-24.0/series`, relative to the pinned `susfs4ksu` submodule. Pass that file to the existing `kernel-patches/apply-susfs.py` before configuration:
@@ -29,6 +31,22 @@ The 5.4.259 inline hooks retain their locations and conditions. Linux 5.4.302 re
 
 The port stores metadata in existing thread, mapping, nameidata and mount flag bits; it adds no inode, mount or task structure members. BakaSU owns SELinux hiding and policy hooks. The host series includes the SUSFS AVC audit hook in `security/selinux/avc.c`; it does not add wrappers to `security/selinux/hooks.c` or `security/selinux/selinuxfs.c`.
 
+## Latest upstream changes
+
+All five new commits are merged, including their GKI patch files. The upstream core files under `kernel_patches/fs/` and `kernel_patches/include/` are unchanged from `ca7093a1`. The inherited 5.4 core therefore remains the source for this profile.
+
+| Upstream commit | Change and 5.4 treatment |
+| --- | --- |
+| `c06d5f8ef2b53d04c5e1c6b86dc3076f1e0e9f33` | Rebase GKI patch context onto android12-5.10.257. This profile uses the independently pinned 5.4.302 OEM baseline; its exec include and fdinfo inode field adaptations are described above. |
+| `31eb14add587b0a089dfe1819f92cc94920e141e` | Keep original and hidden SELinux SID tables synchronized. BakaSU `kernel/feature/selinux_hide.c`, `ksu_security_context_to_sid()`, parses both contexts and invokes `sidtab_context_to_sid()` on both tables; context-hash checks remain in the live and backup paths. No additional host hook is required. |
+| `5a3af83ef589eb1e19dc48550a9eb59fff1facdf` | Sync the official KernelSU architecture, including its PID 1 preinit runner. BakaSU retains its own startup architecture, described below. Its existing exec/read/fstat/post-exec interfaces remain the host contract. |
+| `e24d1726e23d9f6915b04fd89fd79d8b5bc20139` | Reuse native `my_setprocattr`, `my_write_context` and `my_write_access` instead of duplicate GKI helpers. BakaSU owns those native hiding paths in `kernel/feature/selinux_hide.c`; do not add GKI wrappers to host `hooks.c` or `selinuxfs.c`. |
+| `f43926dc94b8ffbf9b74321313536600f69367b1` | Sync official Kconfig and init.rc patch context. `fs/susfs.Kconfig` already defaults SUS_KSTAT and OPEN_REDIRECT to `y`, and the MIX4 build explicitly enables both. The ARM64 port uses its own inline hook glue, so the removed x86 dispatcher Kconfig context is inapplicable. |
+
+The official KSU functions `ksu_setup_preinit_file()` and `ksu_preinit_handle_post_execveat()` execute an embedded runner before PID 1 `/system/bin/init selinux_setup`. On failure they close its fd, restore the original init target and retry exec. BakaSU has no equivalent runner or retry state machine. This is an architecture difference; the profile preserves BakaSU's original startup capabilities and adds neither those symbols nor placeholder stubs.
+
+In BakaSU `kernel/feature/sucompat.c:425`, `ksu_handle_execveat_init()` explicitly requires `current->pid != 1`; it handles an init child executing ksud. Its `ksu_handle_post_execve()` at line 404 installs the su-session fd, rather than recovering a PID 1 runner. Startup services and module rc instead use `kernel/runtime/ksud_integration.c`: second-stage detection at line 261, `KERNEL_SU_RC` at line 53, `load_module_rc_once()` at line 386, fstat at line 690, init.rc at line 717 and the read entry at line 781. `userspace/ksud/src/android/module/mod.rs:520`, `regenerate_preinit_rc()`, generates the metadata `modules.rc`. These paths require runtime verification on the new candidate.
+
 ## Reproduce application and reversal
 
 The verifier reads the evidence kernel repository and creates a disposable scratch repository. It checks all 28 baseline blobs and modes, invokes the kernel's application helper twice, checks postimages and index preservation, then reverses the patch and compares the complete baseline tree and file bytes:
@@ -39,6 +57,8 @@ python3 /absolute/path/to/this/profile/verify_roundtrip.py \
 ```
 
 Use `--kernel-ref COMMIT` to verify a later OEM host whose affected preimages match the manifest. The reference must contain `kernel-patches/apply-susfs.py`. The source kernel tree is not modified.
+
+The exact OEM baseline passed first application, repeat skip, postimage checks, real-index preservation and reverse restoration. Its baseline tree is `014ac9ab6bf6988915ae3a2d35464b7b95c5e247`; the applied tree is `930d32400c316bc3aebeb0d0fd2853b63a00eaf1`. The same evidence applies to the final upstream profile because its patch and all 28 pre/postimages remain unchanged.
 
 For removal from an applied disposable or integrating tree, run from its root:
 
