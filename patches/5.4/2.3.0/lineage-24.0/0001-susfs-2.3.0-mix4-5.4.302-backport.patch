@@ -1221,7 +1221,7 @@ index 6b634c0a9b6efe9fdd37d4c8be34bad5e3be774d..a40f3bf439a5e4f04b3ed793441c8e35
  	show_fd_locks(m, file, files);
  	if (seq_has_overflowed(m))
 diff --git a/fs/proc/task_mmu.c b/fs/proc/task_mmu.c
-index d17cce42fe3038068479179d48046f17c9295b44..1ced2a4626d67f609bcf6f9c744a6671b034192b 100644
+index d17cce42fe3038068479179d48046f17c9295b44..806ea010ad541e3675fe83d5277d298a178d2259 100644
 --- a/fs/proc/task_mmu.c
 +++ b/fs/proc/task_mmu.c
 @@ -19,6 +19,9 @@
@@ -1286,7 +1286,19 @@ index d17cce42fe3038068479179d48046f17c9295b44..1ced2a4626d67f609bcf6f9c744a6671
  	}
  
  	start = vma->vm_start;
-@@ -905,6 +943,13 @@ static void show_smap_vma(struct seq_file *m, void *v)
+@@ -427,7 +465,10 @@ static int show_map(struct seq_file *m, void *v)
+ 	if (vma_pages(vma))
+ 		show_map_vma(m, vma);
+ 
+-	show_map_pad_vma(vma, m, show_map_vma, false);
++#ifdef CONFIG_KSU_SUSFS_SUS_MAP
++	if (!vma->vm_file || !SUSFS_IS_INODE_SUS_MAP(file_inode(vma->vm_file)))
++#endif
++		show_map_pad_vma(vma, m, show_map_vma, false);
+ 
+ 	m_cache_vma(m, v);
+ 	return 0;
+@@ -905,6 +946,13 @@ static void show_smap_vma(struct seq_file *m, void *v)
  	struct vm_area_struct *vma = v;
  	struct mem_size_stats mss;
  
@@ -1300,7 +1312,19 @@ index d17cce42fe3038068479179d48046f17c9295b44..1ced2a4626d67f609bcf6f9c744a6671
  	memset(&mss, 0, sizeof(mss));
  
  	smap_gather_stats(vma, &mss);
-@@ -972,7 +1017,10 @@ static int show_smaps_rollup(struct seq_file *m, void *v)
+@@ -938,7 +986,10 @@ static int show_smap(struct seq_file *m, void *v)
+ 	if (vma_pages(vma))
+ 		show_smap_vma(m, vma);
+ 
+-	show_map_pad_vma(vma, m, show_smap_vma, true);
++#ifdef CONFIG_KSU_SUSFS_SUS_MAP
++	if (!vma->vm_file || !SUSFS_IS_INODE_SUS_MAP(file_inode(vma->vm_file)))
++#endif
++		show_map_pad_vma(vma, m, show_smap_vma, true);
+ 
+ 	m_cache_vma(m, v);
+ 	return 0;
+@@ -972,7 +1023,10 @@ static int show_smaps_rollup(struct seq_file *m, void *v)
  	hold_task_mempolicy(priv);
  
  	for (vma = priv->mm->mmap; vma; vma = vma->vm_next) {
@@ -1312,7 +1336,7 @@ index d17cce42fe3038068479179d48046f17c9295b44..1ced2a4626d67f609bcf6f9c744a6671
  		last_vma_end = vma->vm_end;
  	}
  
-@@ -1460,6 +1508,17 @@ static int pagemap_pmd_range(pmd_t *pmdp, unsigned long addr, unsigned long end,
+@@ -1460,6 +1514,17 @@ static int pagemap_pmd_range(pmd_t *pmdp, unsigned long addr, unsigned long end,
  	spinlock_t *ptl;
  	pte_t *pte, *orig_pte;
  	int err = 0;
@@ -1330,7 +1354,7 @@ index d17cce42fe3038068479179d48046f17c9295b44..1ced2a4626d67f609bcf6f9c744a6671
  
  #ifdef CONFIG_TRANSPARENT_HUGEPAGE
  	ptl = pmd_trans_huge_lock(pmdp, vma);
-@@ -1555,6 +1614,17 @@ static int pagemap_hugetlb_range(pte_t *ptep, unsigned long hmask,
+@@ -1555,6 +1620,17 @@ static int pagemap_hugetlb_range(pte_t *ptep, unsigned long hmask,
  	u64 flags = 0, frame = 0;
  	int err = 0;
  	pte_t pte;
@@ -1348,7 +1372,7 @@ index d17cce42fe3038068479179d48046f17c9295b44..1ced2a4626d67f609bcf6f9c744a6671
  
  	if (vma->vm_flags & VM_SOFTDIRTY)
  		flags |= PM_SOFT_DIRTY;
-@@ -1680,6 +1750,7 @@ static ssize_t pagemap_read(struct file *file, char __user *buf,
+@@ -1680,6 +1756,7 @@ static ssize_t pagemap_read(struct file *file, char __user *buf,
  	while (count && (start_vaddr < end_vaddr)) {
  		int len;
  		unsigned long end;
