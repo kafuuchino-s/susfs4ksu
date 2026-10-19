@@ -1,0 +1,311 @@
+{
+  "profile": "mix4-lineage-24.0-5.4.302",
+  "kernel_upstream": {
+    "url": "https://github.com/Inkypen79/kernel_xiaomi_odin.git",
+    "branch": "lineage-24.0",
+    "commit": "550c3503d7402b5f689f7956f083c2192282c071"
+  },
+  "kernel_baseline": "43fe4bf80b65cbbe92cdacb12705505a23d62e35",
+  "susfs_upstream": {
+    "url": "https://gitlab.com/simonpunk/susfs4ksu.git",
+    "branch": "gki-android12-5.10",
+    "commit": "ca7093a1a26f7911987110c34a1352d74cfb1d09"
+  },
+  "historical_5_4_patch_source": "82f08351fadb8b19dd6591bd14634d02ad832145",
+  "paired_bakasu_candidate": "1744c140a08b233daf3b71801994b9b197318ef0",
+  "files": [
+    {
+      "path": "drivers/input/input.c",
+      "before": {
+        "mode": "100644",
+        "blob": "45fdb9bdf08d42c9a6efda70e9422a16a2d1c1a3"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "d77186393b1f74116c30aa81d9e01fe73fc4b1a7"
+      }
+    },
+    {
+      "path": "fs/Kconfig",
+      "before": {
+        "mode": "100644",
+        "blob": "8ee84321335f7587e5bbe2c09067a1cffe842f00"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "a701a7df07593bea266b775cb9c481aa9ef0f5a3"
+      }
+    },
+    {
+      "path": "fs/Makefile",
+      "before": {
+        "mode": "100644",
+        "blob": "1c949ac25dbb6c92b271bbb5b3b683f9a73b8f58"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "b3282ad992823f9ee0fd30e43042a5b40b8c6c77"
+      }
+    },
+    {
+      "path": "fs/exec.c",
+      "before": {
+        "mode": "100644",
+        "blob": "910b407d267ec799dcfc3e0f2688657a03e123bc"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "81c64eae34c58c9599214b6a295c8d282b115050"
+      }
+    },
+    {
+      "path": "fs/namei.c",
+      "before": {
+        "mode": "100644",
+        "blob": "60b0dc43e7456d711d0362c3b77bdab75d253c4c"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "cdd93b596e121dca1de696494dc126537af61ce7"
+      }
+    },
+    {
+      "path": "fs/namespace.c",
+      "before": {
+        "mode": "100644",
+        "blob": "176bccdf6f3060689213d87b51b190cdbf5bce33"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "317fb2976cc86a9d4c28131495de3b52a34efd7f"
+      }
+    },
+    {
+      "path": "fs/notify/fdinfo.c",
+      "before": {
+        "mode": "100644",
+        "blob": "7df9ad4d84338d54ffb4093e638eb91b808016b5"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "f4f2572377b16487065e8c36212939f5a866b24e"
+      }
+    },
+    {
+      "path": "fs/open.c",
+      "before": {
+        "mode": "100644",
+        "blob": "3f9f5fda8ebf772b6fa3644b17c98d72c2fdc446"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "ef2003afd79fd4063198adee58f7a6ea49d44c8e"
+      }
+    },
+    {
+      "path": "fs/proc/base.c",
+      "before": {
+        "mode": "100644",
+        "blob": "9379c25358953b42416b0580bd8f4ae5498b7c95"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "4a123b15136cf81132977fdd65afd143db051371"
+      }
+    },
+    {
+      "path": "fs/proc/cmdline.c",
+      "before": {
+        "mode": "100644",
+        "blob": "fa762c5fbcb28760dcea21953dc7a42938e2443a"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "2c9474a85c849e3badc9bb441768da54a8d096e4"
+      }
+    },
+    {
+      "path": "fs/proc/fd.c",
+      "before": {
+        "mode": "100644",
+        "blob": "6b634c0a9b6efe9fdd37d4c8be34bad5e3be774d"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "a40f3bf439a5e4f04b3ed793441c8e3540b1e0a3"
+      }
+    },
+    {
+      "path": "fs/proc/task_mmu.c",
+      "before": {
+        "mode": "100644",
+        "blob": "d17cce42fe3038068479179d48046f17c9295b44"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "05695f41bb3baa007b8e149e7d2f663bc9420ec5"
+      }
+    },
+    {
+      "path": "fs/proc_namespace.c",
+      "before": {
+        "mode": "100644",
+        "blob": "5b8d065fa83ccb4ccb9d1102a5233eeb1d151c33"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "bc0637522d2b4e18045cbd35f7fbfb579cb9f27e"
+      }
+    },
+    {
+      "path": "fs/read_write.c",
+      "before": {
+        "mode": "100644",
+        "blob": "301c4a4ba1d05d656d13183252577e230e0c962a"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "948034a7f8b2c9dd2b913c119396afc14a82baf7"
+      }
+    },
+    {
+      "path": "fs/readdir.c",
+      "before": {
+        "mode": "100644",
+        "blob": "07a3b5baa40472251abbe15ac209137832f0ebe1"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "beded5416a9d0f574cb0762269ace3b2eb368104"
+      }
+    },
+    {
+      "path": "fs/stat.c",
+      "before": {
+        "mode": "100644",
+        "blob": "298eb77668a766cf9feafa586bba613a6fe19eeb"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "2f9eb183b15ec6d4972b914cc334dbc227c06540"
+      }
+    },
+    {
+      "path": "fs/statfs.c",
+      "before": {
+        "mode": "100644",
+        "blob": "4960c69cc47cf9baf4f5c8a998fe6fcb80d94d90"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "c07dc7b0d4f6928a50be547f706f9f5bd1aff57c"
+      }
+    },
+    {
+      "path": "fs/super.c",
+      "before": {
+        "mode": "100644",
+        "blob": "8edf44a2d3dcc66318adb74ca33a5b29254e0396"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "0a20967d15fea1a3f569ceef6b3a55522995e8f9"
+      }
+    },
+    {
+      "path": "fs/susfs.Kconfig",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "blob": "88b114f4b6f30559a623d0699682d0d8ea667d37"
+      }
+    },
+    {
+      "path": "fs/susfs.c",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "blob": "88d1ced0bd0405e5fd975d6fdb8a13f878f80e53"
+      }
+    },
+    {
+      "path": "include/linux/odin_ksu_hooks.h",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "blob": "d1f62a99008fda7bb426702f788d414fea29c5a7"
+      }
+    },
+    {
+      "path": "include/linux/susfs.h",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "blob": "83d8821e0ec775c106fb8e8fb03ec9f9fe4f23f9"
+      }
+    },
+    {
+      "path": "include/linux/susfs_def.h",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "blob": "e01774051ec6d869316f17b5f0ce55ab029e2250"
+      }
+    },
+    {
+      "path": "kernel/kallsyms.c",
+      "before": {
+        "mode": "100644",
+        "blob": "14de0c7bf756f993904c993825d29f8638ffde9a"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "77cb9e4ee17a0dc500b32160256707a07408f0ca"
+      }
+    },
+    {
+      "path": "kernel/reboot.c",
+      "before": {
+        "mode": "100644",
+        "blob": "790c2f514a5558b3ba2773e2792637d6fc47df32"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "88dabc6fff0f8d161e9bf5e583dbe06bef207685"
+      }
+    },
+    {
+      "path": "kernel/sys.c",
+      "before": {
+        "mode": "100644",
+        "blob": "3ed05f046c92e2bd9e036b4a95172917dcebf3ac"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "76ac08cf74e1934df7c79d79939177571496bc0b"
+      }
+    },
+    {
+      "path": "mm/memory.c",
+      "before": {
+        "mode": "100644",
+        "blob": "59b91f2a1635e01928ab47d60b74e13c2891c137"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "200e9daacb15fd1c0d9dcc54195a72ab7aef50de"
+      }
+    },
+    {
+      "path": "security/selinux/avc.c",
+      "before": {
+        "mode": "100644",
+        "blob": "7e1e6bc881b0670b2d02c6ddff7fcef1e34b1536"
+      },
+      "after": {
+        "mode": "100644",
+        "blob": "0766eebc7d06d07d8f8db1f2e00bff9454eab6bc"
+      }
+    }
+  ]
+}
