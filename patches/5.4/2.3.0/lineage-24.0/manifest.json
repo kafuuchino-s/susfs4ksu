@@ -309,7 +309,7 @@
     }
   ],
   "checkpoint_one": {
-    "susfs_commit": "b9131f1a1537f562b00fdcd7b98a3fc5f2c52d7c",
+    "susfs_commit": "897ee7e2f922c39b5e3183b6a99235a0f423a1cc",
     "susfs_upstream": "ca7093a1a26f7911987110c34a1352d74cfb1d09",
     "bakasu": "1744c140a08b233daf3b71801994b9b197318ef0"
   }

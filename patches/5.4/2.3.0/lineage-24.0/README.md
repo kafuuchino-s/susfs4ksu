@@ -8,7 +8,7 @@ Use `series` for the candidate kernel with the Dream OEM adaptation. This profil
 - Exact pre-SUSFS OEM host: `43fe4bf80b65cbbe92cdacb12705505a23d62e35`, in kafuuchino-s/kernel_xiaomi_odin. Its `fs/proc/base.c` OEM task controls remain present.
 - Current merged SUSFS upstream: `f43926dc94b8ffbf9b74321313536600f69367b1`, `gki-android12-5.10`.
 - Paired BakaSU candidate: `997d1ac40e65497637741f97c531b1a3fc211e15`.
-- Checkpoint-one dependencies: SUSFS upstream `ca7093a1a26f7911987110c34a1352d74cfb1d09`, BakaSU `1744c140a08b233daf3b71801994b9b197318ef0`. The corresponding profile is recorded by SUSFS commit `b9131f1a1537f562b00fdcd7b98a3fc5f2c52d7c`; the final profile has identical patch bytes.
+- Checkpoint-one dependencies: SUSFS upstream `ca7093a1a26f7911987110c34a1352d74cfb1d09`, BakaSU `1744c140a08b233daf3b71801994b9b197318ef0`. The corresponding profile is recorded by SUSFS commit `897ee7e2f922c39b5e3183b6a99235a0f423a1cc`; the final profile has identical patch bytes.
 - Historical 5.4 patch extraction: SUSFS `82f08351fadb8b19dd6591bd14634d02ad832145`. See the sibling README for the existing SELinux mappings.
 
 Set the kernel recipe's `susfs_series` to `patches/5.4/2.3.0/lineage-24.0/series`, relative to the pinned `susfs4ksu` submodule. Pass that file to the existing `kernel-patches/apply-susfs.py` before configuration:
@@ -28,7 +28,6 @@ The 5.4.259 inline hooks retain their locations and conditions. Linux 5.4.302 re
 
 - `fs/exec.c`: place `susfs_def.h` beside the current uaccess include. Keep the `__do_execve_file()` flow and BakaSU pre/post-exec calls, including the `!file` condition and `TIF_PROC_IN_KSU_EXECVE` reset.
 - `fs/proc/fd.c`: retain the new upstream `ino:` fdinfo field. Print the same local inode value updated by `susfs_sus_kstat_spoof_proc_fd_seq_show()`, together with its adjusted mount ID. A plain file retains its real inode and mount ID; an eligible app sees configured kstat values. The existing task, file reference and lock lifetimes remain intact.
-
 - `fs/proc/task_mmu.c`: Linux 5.4.302 makes `show_smap_vma()` a `void` callback. Its SUS_MAP early exit uses `return;`, preserving the hidden-VMA skip without returning a value. Both maps and smaps filter padding output using the original file-backed VMA, before `show_map_pad_vma()` turns padding into an anonymous VMA. `m_cache_vma()` still runs for hidden mappings.
 
 The port stores metadata in existing thread, mapping, nameidata and mount flag bits; it adds no inode, mount or task structure members. BakaSU owns SELinux hiding and policy hooks. The host series includes the SUSFS AVC audit hook in `security/selinux/avc.c`; it does not add wrappers to `security/selinux/hooks.c` or `security/selinux/selinuxfs.c`.
@@ -60,7 +59,7 @@ python3 /absolute/path/to/this/profile/verify_roundtrip.py \
 
 Use `--kernel-ref COMMIT` to verify a later OEM host whose affected preimages match the manifest. The reference must contain `kernel-patches/apply-susfs.py`. The source kernel tree is not modified.
 
-The exact OEM baseline passed first application, repeat skip, postimage checks, real-index preservation and reverse restoration. Its baseline tree is `014ac9ab6bf6988915ae3a2d35464b7b95c5e247`; the applied tree is `930d32400c316bc3aebeb0d0fd2853b63a00eaf1`. The same evidence applies to the final upstream profile because its patch and all 28 pre/postimages remain unchanged.
+The exact OEM baseline passed first application, repeat skip, postimage checks, real-index preservation and reverse restoration. Its baseline tree is `014ac9ab6bf6988915ae3a2d35464b7b95c5e247`; the applied tree is `2de792b5aa9affb62eac6bcf962a4c23e14ffba6`. The same evidence applies to the final upstream profile because its patch and all 28 pre/postimages remain unchanged.
 
 For removal from an applied disposable or integrating tree, run from its root:
 
