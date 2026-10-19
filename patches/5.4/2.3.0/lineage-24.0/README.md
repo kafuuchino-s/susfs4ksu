@@ -32,6 +32,17 @@ The 5.4.259 inline hooks retain their locations and conditions. Linux 5.4.302 re
 
 The port stores metadata in existing thread, mapping, nameidata and mount flag bits; it adds no inode, mount or task structure members. BakaSU owns SELinux hiding and policy hooks. The host series includes the SUSFS AVC audit hook in `security/selinux/avc.c`; it does not add wrappers to `security/selinux/hooks.c` or `security/selinux/selinuxfs.c`.
 
+For padding, static tracing follows `show_map()` / `show_smap()` in `fs/proc/task_mmu.c` into `show_map_pad_vma()` in `mm/pgsize_migration.c`. The latter first constructs a padding VMA with `init_pad_vma()` and requires its `vm_file` to be NULL. A check inside the display callback therefore loses the source file's SUS_MAP state. The two new guards inspect that source VMA before creating or displaying its padding; they do not bypass either caller's final `m_cache_vma()` call.
+
+| Condition | Previous profile | Corrected profile |
+| --- | --- | --- |
+| SUS_MAP hidden file with active migration padding | Original file entry hidden; anonymous padding entry could still appear in maps/smaps | Original entry and its derived padding are hidden |
+| Visible file or anonymous source VMA | Existing maps/smaps and padding output | Same output |
+| SUS_MAP disabled | Existing upstream padding flow | Same flow |
+
+These are source-path expectations. Padding output and VMA iteration have not been exercised on a running 5.4.302 kernel.
+
+
 ## Latest upstream changes
 
 All five new commits are merged, including their GKI patch files. The upstream core files under `kernel_patches/fs/` and `kernel_patches/include/` are unchanged from `ca7093a1`. The inherited 5.4 core therefore remains the source for this profile.
