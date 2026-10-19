@@ -29,7 +29,7 @@ The 5.4.259 inline hooks retain their locations and conditions. Linux 5.4.302 re
 - `fs/exec.c`: place `susfs_def.h` beside the current uaccess include. Keep the `__do_execve_file()` flow and BakaSU pre/post-exec calls, including the `!file` condition and `TIF_PROC_IN_KSU_EXECVE` reset.
 - `fs/proc/fd.c`: retain the new upstream `ino:` fdinfo field. Print the same local inode value updated by `susfs_sus_kstat_spoof_proc_fd_seq_show()`, together with its adjusted mount ID. A plain file retains its real inode and mount ID; an eligible app sees configured kstat values. The existing task, file reference and lock lifetimes remain intact.
 
-- `fs/proc/task_mmu.c`: Linux 5.4.302 makes `show_smap_vma()` a `void` callback. Its SUS_MAP early exit uses `return;`, preserving the hidden-VMA skip without returning a value.
+- `fs/proc/task_mmu.c`: Linux 5.4.302 makes `show_smap_vma()` a `void` callback. Its SUS_MAP early exit uses `return;`, preserving the hidden-VMA skip without returning a value. Both maps and smaps filter padding output using the original file-backed VMA, before `show_map_pad_vma()` turns padding into an anonymous VMA. `m_cache_vma()` still runs for hidden mappings.
 
 The port stores metadata in existing thread, mapping, nameidata and mount flag bits; it adds no inode, mount or task structure members. BakaSU owns SELinux hiding and policy hooks. The host series includes the SUSFS AVC audit hook in `security/selinux/avc.c`; it does not add wrappers to `security/selinux/hooks.c` or `security/selinux/selinuxfs.c`.
 
